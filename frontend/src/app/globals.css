@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --background: #f6f8fb;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --primary-muted: #eff6ff;
+
+  --accent: #0d9488;
+  --accent-foreground: #ffffff;
+
+  --danger: #dc2626;
+  --danger-foreground: #ffffff;
+  --danger-muted: #fef2f2;
+
+  --success: #16a34a;
+  --warning: #d97706;
+
+  --ring: #93c5fd;
+
+  /* Validated data-viz categorical slots (see dataviz skill palette) */
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+
+  --chart-grid: #e5e9f0;
+  --chart-axis: #cbd3e1;
+  --chart-muted: #94a3b8;
+
+  --sidebar-bg: #ffffff;
+  --sidebar-bg-soft: #fafbfd;
+  --sidebar-hover: #f1f5f9;
+  --sidebar-active: #eff6ff;
+  --sidebar-border: #e2e8f0;
+  --sidebar-text: #64748b;
+  --sidebar-text-active: #0f172a;
+  --sidebar-icon-active: #2563eb;
+
+  --gradient-brand: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -8px rgba(15, 23, 42, 0.08);
+  --shadow-soft-lg: 0 2px 4px rgba(15, 23, 42, 0.04), 0 16px 40px -12px rgba(15, 23, 42, 0.14);
+}
+
+/* Dark mode - toggled via next-themes adding class="dark" to <html>.
+   The login page's brand panel intentionally stays on its own fixed dark
+   colors regardless of theme (a hero panel, not a surface) - see login/page.tsx. */
+:root.dark {
+  color-scheme: dark;
+
+  --sidebar-bg: #0b1220;
+  --sidebar-bg-soft: #0f1a2e;
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --sidebar-active: rgba(59, 130, 246, 0.16);
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-text: #8b96ab;
+  --sidebar-text-active: #ffffff;
+  --sidebar-icon-active: #60a5fa;
+
+  --background: #0a0f1c;
+  --surface: #121a2c;
+  --surface-muted: #1a2338;
+  --foreground: #e7ebf3;
+  --muted-foreground: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+
+  --primary: #3987e5;
+  --primary-foreground: #ffffff;
+  --primary-muted: rgba(57, 135, 229, 0.16);
+
+  --accent: #2dd4bf;
+  --accent-foreground: #082f2a;
+
+  --danger: #ef4444;
+  --danger-foreground: #ffffff;
+  --danger-muted: rgba(239, 68, 68, 0.14);
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+
+  --ring: #3987e5;
+
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+
+  --chart-grid: rgba(255, 255, 255, 0.08);
+  --chart-axis: rgba(255, 255, 255, 0.18);
+  --chart-muted: #94a3b8;
+
+  --gradient-brand: linear-gradient(135deg, #3987e5 0%, #6366f1 100%);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -8px rgba(0, 0, 0, 0.45);
+  --shadow-soft-lg: 0 2px 4px rgba(0, 0, 0, 0.35), 0 16px 40px -12px rgba(0, 0, 0, 0.55);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-muted: var(--primary-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-muted: var(--danger-muted);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-grid: var(--chart-grid);
+  --color-chart-axis: var(--chart-axis);
+  --color-chart-muted: var(--chart-muted);
+
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-bg-soft: var(--sidebar-bg-soft);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-text: var(--sidebar-text);
+  --color-sidebar-text-active: var(--sidebar-text-active);
+  --color-sidebar-icon-active: var(--sidebar-icon-active);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background:
+    radial-gradient(1000px circle at 0% -10%, rgba(37, 99, 235, 0.06), transparent 45%),
+    radial-gradient(900px circle at 100% -10%, rgba(13, 148, 136, 0.05), transparent 45%),
+    var(--background);
+  color: var(--foreground);
+}
+
+* {
+  border-color: var(--border);
+}
+
+button,
+a {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease, transform 150ms ease;
+}
+
+::selection {
+  background: var(--primary-muted);
+  color: var(--primary);
+}
