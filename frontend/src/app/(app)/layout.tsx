@@ -16,7 +16,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         <Topbar onMenuClick={() => setMobileNavOpen(true)} />
         <main className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 lg:px-8">
-          <div className="mx-auto flex min-h-full max-w-7xl flex-col">
+          <div className="mx-auto flex min-h-full  flex-col">
             <div className="flex-1">{children}</div>
 
             <footer className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row">
