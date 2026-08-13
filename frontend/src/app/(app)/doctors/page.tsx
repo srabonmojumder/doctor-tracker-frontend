@@ -6,7 +6,8 @@ import { Pencil, Plus, Search, Stethoscope, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { SelectMenu } from "@/components/ui/select-menu";
+import { DatePicker } from "@/components/ui/date-picker";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog } from "@/components/ui/dialog";
@@ -117,56 +118,54 @@ export default function DoctorsPage() {
               }}
             />
           </div>
-          <Select
+          <SelectMenu
             className="sm:w-48"
             value={specialization}
-            onChange={(e) => {
-              setSpecialization(e.target.value);
+            onValueChange={(value) => {
+              setSpecialization(value);
               resetFiltersPage();
             }}
-          >
-            <option value="">All specializations</option>
-            {specializations?.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </Select>
+            options={[
+              { value: "", label: "All specializations" },
+              ...(specializations?.map((s) => ({ value: s, label: s })) ?? []),
+            ]}
+          />
           <div className="flex items-center gap-2">
-            <Input
-              type="date"
+            <DatePicker
               aria-label="From date"
               className="sm:w-40"
+              placeholder="From date"
               value={dateFrom}
-              onChange={(e) => {
-                setDateFrom(e.target.value);
+              onChange={(value) => {
+                setDateFrom(value);
                 resetFiltersPage();
               }}
             />
             <span className="text-sm text-muted-foreground">to</span>
-            <Input
-              type="date"
+            <DatePicker
               aria-label="To date"
               className="sm:w-40"
+              placeholder="To date"
               value={dateTo}
-              onChange={(e) => {
-                setDateTo(e.target.value);
+              onChange={(value) => {
+                setDateTo(value);
                 resetFiltersPage();
               }}
             />
           </div>
-          <Select
+          <SelectMenu
             className="sm:w-40"
             value={sort}
-            onChange={(e) => {
-              setSort(e.target.value as typeof sort);
+            onValueChange={(value) => {
+              setSort(value as typeof sort);
               resetFiltersPage();
             }}
-          >
-            <option value="newest">Newest first</option>
-            <option value="oldest">Oldest first</option>
-            <option value="name">Name (A-Z)</option>
-          </Select>
+            options={[
+              { value: "newest", label: "Newest first" },
+              { value: "oldest", label: "Oldest first" },
+              { value: "name", label: "Name (A-Z)" },
+            ]}
+          />
         </div>
 
         {isLoading ? (

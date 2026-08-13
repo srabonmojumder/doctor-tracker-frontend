@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Search, Users } from "lucide-react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { SelectMenu } from "@/components/ui/select-menu";
+import { DatePicker } from "@/components/ui/date-picker";
 import { Card } from "@/components/ui/card";
 import { Dialog } from "@/components/ui/dialog";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
@@ -96,56 +97,54 @@ export default function PatientsPage() {
               }}
             />
           </div>
-          <Select
+          <SelectMenu
             className="sm:w-48"
             value={condition}
-            onChange={(e) => {
-              setCondition(e.target.value);
+            onValueChange={(value) => {
+              setCondition(value);
               resetPage();
             }}
-          >
-            <option value="">All conditions</option>
-            {conditions?.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </Select>
+            options={[
+              { value: "", label: "All conditions" },
+              ...(conditions?.map((c) => ({ value: c, label: c })) ?? []),
+            ]}
+          />
           <div className="flex items-center gap-2">
-            <Input
-              type="date"
+            <DatePicker
               aria-label="From date"
               className="sm:w-40"
+              placeholder="From date"
               value={dateFrom}
-              onChange={(e) => {
-                setDateFrom(e.target.value);
+              onChange={(value) => {
+                setDateFrom(value);
                 resetPage();
               }}
             />
             <span className="text-sm text-muted-foreground">to</span>
-            <Input
-              type="date"
+            <DatePicker
               aria-label="To date"
               className="sm:w-40"
+              placeholder="To date"
               value={dateTo}
-              onChange={(e) => {
-                setDateTo(e.target.value);
+              onChange={(value) => {
+                setDateTo(value);
                 resetPage();
               }}
             />
           </div>
-          <Select
+          <SelectMenu
             className="sm:w-40"
             value={sort}
-            onChange={(e) => {
-              setSort(e.target.value as typeof sort);
+            onValueChange={(value) => {
+              setSort(value as typeof sort);
               resetPage();
             }}
-          >
-            <option value="newest">Newest first</option>
-            <option value="oldest">Oldest first</option>
-            <option value="name">Name (A-Z)</option>
-          </Select>
+            options={[
+              { value: "newest", label: "Newest first" },
+              { value: "oldest", label: "Oldest first" },
+              { value: "name", label: "Name (A-Z)" },
+            ]}
+          />
         </div>
 
         {isLoading ? (
